@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -53,14 +54,13 @@ class _LoginViewState extends State<LoginView> {
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
-            mainAxisAlignment:
-                MainAxisAlignment.spaceBetween, // Push items to top and bottom
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 children: [
                   MyTextField(
                     controller: _emailController,
-                    hintText: 'exmaple@gmail.com',
+                    hintText: 'example@gmail.com',
                     labelText: 'Email',
                     backgroundColor: Colors.white,
                     keyboardType: TextInputType.emailAddress,
@@ -119,14 +119,25 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  void submitHandle(BuildContext context) {
+  void submitHandle(BuildContext context) async {
     final email = _emailController.text;
     final password = _passwordController.text;
 
-    if (email == "user@test.com" && password == "user") {
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
-    } else {
-      showSnackbar(context, "Invalid email or password");
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        showSnackbar(context, 'No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        showSnackbar(context, 'Wrong password provided.');
+      } else {
+        showSnackbar(context, e.message ?? 'An error occurred.');
+      }
     }
   }
 

@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:repairing_lap_app/views/home.dart';
 import 'package:repairing_lap_app/views/login.dart';
@@ -10,7 +11,9 @@ import 'package:repairing_lap_app/views/welcome.dart';
 
 import 'data/data.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   MyData data = MyData();
   Get.put(data);
   runApp(const MainApp());

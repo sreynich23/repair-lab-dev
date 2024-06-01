@@ -1,7 +1,8 @@
-// ignore_for_file: library_private_types_in_public_api
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import '../components/button.dart';
 import '../components/textfield.dart';
 
@@ -54,8 +55,7 @@ class _RegisterViewState extends State<RegisterView> {
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
-            mainAxisAlignment:
-                MainAxisAlignment.spaceBetween, // Push items to top and bottom
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 children: [
@@ -69,7 +69,7 @@ class _RegisterViewState extends State<RegisterView> {
                   const SizedBox(height: 16),
                   MyTextField(
                     controller: _emailController,
-                    hintText: 'exmaple@gmail.com',
+                    hintText: 'example@gmail.com',
                     labelText: 'Email',
                     backgroundColor: Colors.white,
                     keyboardType: TextInputType.emailAddress,
@@ -128,7 +128,7 @@ class _RegisterViewState extends State<RegisterView> {
     );
   }
 
-  void submitHandle(BuildContext context) {
+  void submitHandle(BuildContext context) async {
     final email = _emailController.text;
     final password = _passwordController.text;
     final username = _usernameController.text;
@@ -145,6 +145,30 @@ class _RegisterViewState extends State<RegisterView> {
       showSnackbar(context, 'Username cannot contain only numbers');
     } else if (email.isEmpty || password.isEmpty || username.isEmpty) {
       showSnackbar(context, 'Please enter your information');
+    } else {
+      try {
+        UserCredential userCredential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(userCredential.user?.uid)
+            .set({
+          'username': username,
+          'email': email,
+        });
+        Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          showSnackbar(context, 'The password provided is too weak.');
+        } else if (e.code == 'email-already-in-use') {
+          showSnackbar(context, 'The account already exists for that email.');
+        } else {
+          showSnackbar(context, e.message ?? 'An error occurred.');
+        }
+      }
     }
   }
 

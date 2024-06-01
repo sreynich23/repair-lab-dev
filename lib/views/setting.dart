@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:repairing_lap_app/views/login.dart';
 import 'package:repairing_lap_app/views/subpages/help_support.dart';
@@ -120,9 +121,10 @@ class SettingView extends StatelessWidget {
   }
 
   Widget _buildProfileName() {
-    return const Center(
+    String? name = FirebaseAuth.instance.currentUser!.displayName;
+    return Center(
       child: Text(
-        'Sok Sreypich',
+        "${name}",
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 20,

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "433296803859",
+    "project_id": "reparing-lab",
+    "storage_bucket": "reparing-lab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433296803859:android:47e9a367d762b2ca4a17e6",
+        "android_client_info": {
+          "package_name": "com.example.repairing_lap_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCs6QgyzfQAWyvfLQf85bZw1G3reZsBYl0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433296803859:android:b0c5a85a0482cf5c4a17e6",
+        "android_client_info": {
+          "package_name": "com.example.reparing"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCs6QgyzfQAWyvfLQf85bZw1G3reZsBYl0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
