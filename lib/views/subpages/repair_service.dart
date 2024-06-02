@@ -1,11 +1,10 @@
-// ignore_for_file: deprecated_member_use
-// ignore: unnecessary_import
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../components/category_button.dart';
+import '../../data/languages.dart';
 
 class RepairServiceView extends StatelessWidget {
   const RepairServiceView({super.key});
@@ -37,8 +36,8 @@ class RepairServiceView extends StatelessWidget {
             Text(
               content,
               style: TextStyle(
-                fontSize: 15,
-                color: Colors.grey[700],
+                fontSize: 17,
+                color: Colors.grey[800],
               ),
               textAlign: TextAlign.left,
             ),
@@ -49,13 +48,13 @@ class RepairServiceView extends StatelessWidget {
     );
   }
 
-  Widget buildCategoryRow(
-      String title, List<Map<String, dynamic>> buttons, BuildContext context) {
+  Widget buildCategoryRow(String titleKey, List<Map<String, dynamic>> buttons,
+      BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          title,
+          titleKey.tr, // Access translations using .tr extension
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         SingleChildScrollView(
@@ -71,19 +70,19 @@ class RepairServiceView extends StatelessWidget {
                             _showBottomSheet(
                               context,
                               buttonData['image'],
-                              buttonData['title'],
-                              buttonData['content'],
+                              buttonData['titleKey'],
+                              buttonData['contentKey'],
                             );
                           },
                           child: CategoryButton(
                             image: buttonData['image'],
-                            title: buttonData['title'],
+                            title: buttonData['titleKey'],
                             onPressed: () {
                               _showBottomSheet(
                                 context,
                                 buttonData['image'],
-                                buttonData['title'],
-                                buttonData['content'],
+                                buttonData['titleKey'],
+                                buttonData['contentKey'],
                               );
                             },
                           ),
@@ -99,10 +98,12 @@ class RepairServiceView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(Languages()); // Put Languages class into GetX's memory
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Repair Service',
+          'homeView.categoryService'
+              .tr, // Access translations using .tr extension
           style:
               TextStyle(fontWeight: FontWeight.bold, color: Colors.blue[500]),
         ),
@@ -116,81 +117,62 @@ class RepairServiceView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               buildCategoryRow(
-                "Hardware",
+                "service.repair".tr,
                 [
                   {
                     'image': Image.asset("assets/images/computer-repair.png",
                         width: 50),
-                    'title': "PC Repair",
-                    'content':
-                        "We offer comprehensive PC repair services, including hardware diagnostics, replacements, and upgrades."
+                    'titleKey': "service.hardware".tr,
+                    'contentKey': "service.hardwareTxt".tr
                   },
                   {
                     'image':
-                        Image.asset("assets/images/system-unit.png", width: 50),
-                    'title': "System Unit Repair",
-                    'content':
-                        "Our system unit repair services cover all aspects, from power supply issues to motherboard replacements."
+                        Image.asset("assets/images/testing.png", width: 50),
+                    'titleKey': "service.software".tr,
+                    'contentKey': "service.softwareTxt".tr
                   },
                   {
                     'image':
                         Image.asset("assets/images/printer.png", width: 50),
-                    'title': "Printer Installing",
-                    'content':
-                        "We provide professional printer installation services to ensure your printer is set up and running smoothly."
+                    'titleKey': "service.printer".tr,
+                    'contentKey': "service.printerTxt".tr
                   },
                 ],
                 context,
               ),
               buildCategoryRow(
-                "Software",
+                "service.mediaProduction".tr,
                 [
                   {
-                    'image':
-                        Image.asset("assets/images/testing.png", width: 50),
-                    'title': "Licence / Crack",
-                    'content':
-                        "We assist with software licensing and installation of crack versions for testing and educational purposes."
-                  },
-                  {
-                    'image': Image.asset("assets/images/office.png", width: 50),
-                    'title': "Microsoft Office",
-                    'content':
-                        "Our services include installation and troubleshooting of Microsoft Office applications."
-                  },
-                  {
-                    'image':
-                        Image.asset("assets/images/engineer.png", width: 50),
-                    'title': "Architecture / CE",
-                    'content':
-                        "We provide software solutions for architecture and civil engineering, including AutoCAD and other industry-standard tools."
-                  },
-                  {
-                    'image':
-                        Image.asset("assets/images/planting.png", width: 50),
-                    'title': "Agriculture",
-                    'content':
-                        "We offer agricultural software solutions to help manage and optimize farming activities."
-                  },
-                  {
                     'image': Image.asset("assets/images/assets.png", width: 50),
-                    'title': "Multimedia",
-                    'content':
-                        "Our multimedia services include installation and troubleshooting of software for video editing, graphic design, and more."
+                    'titleKey': "service.videosCreation".tr,
+                    'contentKey': "service.videosCreationTxt".tr
                   },
                 ],
                 context,
               ),
               const SizedBox(height: 20),
               buildCategoryRow(
-                "Components",
+                "service.programming".tr,
                 [
                   {
-                    'image': Image.asset("assets/images/hard-disk-drive.png",
+                    'image': Image.asset("assets/images/coding-language.png",
                         width: 50),
-                    'title': "PC Components",
-                    'content':
-                        "We offer a range of PC components, including hard drives, RAM, graphics cards, and more, with installation services."
+                    'titleKey': "service.webDev".tr,
+                    'contentKey': "service.webDevTxt".tr
+                  },
+                ],
+                context,
+              ),
+              const SizedBox(height: 20),
+              buildCategoryRow(
+                "service.graphicDesign".tr,
+                [
+                  {
+                    'image': Image.asset("assets/images/design-thinking.png",
+                        width: 50),
+                    'titleKey': "service.designing".tr,
+                    'contentKey': "service.designingTxt".tr
                   },
                 ],
                 context,

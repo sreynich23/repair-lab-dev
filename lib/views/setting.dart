@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:repairing_lap_app/views/login.dart';
 import 'package:repairing_lap_app/views/subpages/help_support.dart';
-import 'package:repairing_lap_app/views/subpages/them.dart';
-
 import '../components/button.dart';
 import '../components/notificatino_bell.dart';
 import 'subpages/language.dart';
 import 'subpages/manage_profile.dart';
+import 'subpages/them.dart';
 
 class SettingView extends StatelessWidget {
   const SettingView({super.key});
@@ -14,8 +14,10 @@ class SettingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // App bar
       appBar: AppBar(
         backgroundColor: Colors.grey[100],
+        // notification
         actions: const [NotificationBell(notificationCount: 1)],
       ),
       backgroundColor: Colors.grey[100],
@@ -24,62 +26,54 @@ class SettingView extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
+              // profile image
               _buildProfileImage(),
               const SizedBox(height: 10),
+              // profile name
               _buildProfileName(),
               const Divider(),
               const SizedBox(height: 10),
+              // profile button
               SettingButton(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ManageProfileView()));
+                  Get.to(() => const ManageProfileView());
                 },
-                titleText: "Manage Profile",
+                titleText: 'homeView.profile'.tr,
               ),
               const SizedBox(height: 10),
+              // language button
               SettingButton(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const LanguageView()));
+                  Get.to(() => const LanguageView());
                 },
-                titleText: "Languages",
+                titleText: 'settingView.settingViewLan'.tr,
               ),
               const SizedBox(height: 10),
+              // theme button
               SettingButton(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ThemeView()));
+                  Get.to(() => const ThemeView());
                 },
-                titleText: "Theme",
+                titleText: 'settingView.settingViewTheme'.tr,
               ),
               const SizedBox(height: 10),
+              // help & support button
               SettingButton(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const HelpSupportView()));
+                  Get.to(() => const HelpSupportView());
                 },
-                titleText: "Help & Support",
+                titleText: 'settingView.settingViewHelpSupport'.tr,
               ),
               const SizedBox(height: 10),
               const Divider(),
               const SizedBox(height: 10),
+              // logout button
               SizedBox(
                 width: double.infinity,
                 child: Button(
-                  buttonText: "Log Out",
+                  buttonText: 'settingView.settingViewLogout'.tr,
                   func: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginView()));
+                    Get.offAll(() => const LoginView());
                   },
                   backgroundColor: Colors.red[100],
                   textColor: Colors.red,
@@ -137,8 +131,11 @@ class SettingButton extends StatelessWidget {
   final String titleText;
   final VoidCallback onTap;
 
-  const SettingButton(
-      {super.key, required this.titleText, required this.onTap});
+  const SettingButton({
+    super.key,
+    required this.titleText,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +155,8 @@ class SettingButton extends StatelessWidget {
         ),
         child: TextButton(
           style: TextButton.styleFrom(
-              padding: const EdgeInsets.symmetric(horizontal: 10)),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+          ),
           onPressed: onTap,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

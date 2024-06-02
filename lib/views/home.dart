@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:repairing_lap_app/components/button.dart';
 import 'package:repairing_lap_app/views/subpages/manage_profile.dart';
 import 'package:repairing_lap_app/views/subpages/permission.dart';
 import '../components/category_button.dart';
 import '../components/notificatino_bell.dart';
-import '../data/data.dart';
-import '../model/model.dart';
 import 'subpages/lab_request.dart';
 import 'subpages/repair_service.dart';
 
@@ -17,17 +16,13 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final MyData data = Get.find<MyData>();
-  final LabRequestController labRequestController =
-      Get.put(LabRequestController());
-
   Widget buildCategorySection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          "Categories",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        Text(
+          "homeView.categoryTitle".tr,
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 15),
         SingleChildScrollView(
@@ -41,7 +36,7 @@ class _HomeViewState extends State<HomeView> {
                     "assets/icons/repair.png",
                     width: 70,
                   ),
-                  title: "Repair",
+                  title: "homeView.categoryService".tr,
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -57,7 +52,7 @@ class _HomeViewState extends State<HomeView> {
                     "assets/icons/computer.png",
                     width: 70,
                   ),
-                  title: "Request Labs",
+                  title: "homeView.categoryReqLab".tr,
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -73,7 +68,7 @@ class _HomeViewState extends State<HomeView> {
                     "assets/icons/permission.png",
                     width: 70,
                   ),
-                  title: "Permission",
+                  title: "homeView.categoryPermissions".tr,
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -88,9 +83,9 @@ class _HomeViewState extends State<HomeView> {
           ),
         ),
         const SizedBox(height: 15),
-        const Text(
-          "Labs Status",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        Text(
+          "homeView.labStatusTitle".tr,
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ],
     );
@@ -102,28 +97,47 @@ class _HomeViewState extends State<HomeView> {
       onTap: () {
         if (isAvailable) {
           Navigator.push(
-            context,
+            Get.context!, 
             MaterialPageRoute(
               builder: (context) => const LabRequestView(),
             ),
           );
         } else {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text('Lab $labName'),
-                content: Text('Taken by $takenBy\nDuration usage: $duration'),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('Close'),
-                  ),
-                ],
-              );
-            },
+          Get.bottomSheet(
+            Container(
+              height: 180,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15),
+                    topRight: Radius.circular(15)),
+              ),
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Lab $labName',
+                      style: const TextStyle(
+                          color: Colors.blueAccent,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      '${'homeView.labTakenBy'.tr} $takenBy',
+                      style: const TextStyle(fontSize: 17),
+                    ),
+                    Text(
+                      '${'homeView.durationUse'.tr} $duration',
+                      style: const TextStyle(fontSize: 17),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           );
         }
       },
@@ -140,7 +154,9 @@ class _HomeViewState extends State<HomeView> {
                 style: TextStyle(fontSize: 16, color: Colors.grey[700]),
               ),
               Text(
-                isAvailable ? 'Available' : 'Not Available',
+                isAvailable
+                    ? "homeView.labStatusAvailable".tr
+                    : "homeView.labStatusUnavailable".tr,
                 style: TextStyle(
                   fontSize: 16,
                   color: isAvailable ? Colors.green : Colors.red,
@@ -155,15 +171,15 @@ class _HomeViewState extends State<HomeView> {
 
   Widget buildLabsSection() {
     final labs = [
-      {'name': 'Lab 010', 'available': true, 'takenBy': null, 'duration': null},
-      {'name': 'Lab 011', 'available': true, 'takenBy': null, 'duration': null},
+      {'name': '010', 'available': true, 'takenBy': null, 'duration': null},
+      {'name': '011', 'available': true, 'takenBy': null, 'duration': null},
       {
         'name': '013',
         'available': false,
         'takenBy': 'John Doe',
         'duration': '2024-05-01 - 2024-05-30'
       },
-      {'name': 'Lab 014', 'available': true, 'takenBy': null, 'duration': null},
+      {'name': '014', 'available': true, 'takenBy': null, 'duration': null},
     ];
 
     return Column(
@@ -207,7 +223,7 @@ class _HomeViewState extends State<HomeView> {
                       ),
                     ),
                     Text(
-                      'Profile',
+                      "homeView.profile".tr,
                       style: TextStyle(
                         fontSize: 12.0,
                         color: Colors.grey[500],
@@ -246,5 +262,3 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 }
-
-

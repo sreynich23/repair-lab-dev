@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../components/button.dart';
+import '../../data/languages.dart';
 import '../../main.dart';
 
 class ResultScannerView extends StatelessWidget {
@@ -9,10 +11,11 @@ class ResultScannerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(Languages());
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Result Scanner",
+          "resultScannerView.rsvTitle".tr,
           style:
               TextStyle(fontWeight: FontWeight.bold, color: Colors.blue[500]),
         ),
@@ -51,7 +54,7 @@ class ResultScannerView extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: Button(
-                buttonText: 'Done',
+                buttonText: 'resultScannerView.button'.tr,
                 backgroundColor: Colors.blue[100],
                 textColor: Colors.blue[500],
                 func: () {

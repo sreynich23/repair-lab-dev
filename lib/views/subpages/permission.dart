@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../components/button.dart';
+import '../../data/languages.dart';
 import '../../model/model.dart';
 
 class PermissionView extends StatefulWidget {
@@ -144,10 +145,11 @@ class _PermissionViewState extends State<PermissionView> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(Languages());
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Permission',
+          'permission.title'.tr,
           style:
               TextStyle(fontWeight: FontWeight.bold, color: Colors.blue[500]),
         ),
@@ -163,8 +165,8 @@ class _PermissionViewState extends State<PermissionView> {
               children: [
                 Expanded(
                   child: MyTextField(
-                    hintText: "Your full name",
-                    labelText: "Full Name",
+                    hintText: "",
+                    labelText: "labRequest.name".tr,
                     controller: _controllers['fullName'],
                     keyboardType: TextInputType.text,
                   ),
@@ -173,9 +175,13 @@ class _PermissionViewState extends State<PermissionView> {
                 // Gender Dropdown
                 Expanded(
                   child: _buildDropdown(
-                    label: 'Gender',
+                    label: 'labRequest.gender'.tr,
                     value: selectedGender,
-                    items: const ['Male', 'Female', 'Other'],
+                    items: [
+                      'labRequest.genderMale'.tr,
+                      'labRequest.genderFemale'.tr,
+                      'labRequest.genderOther'.tr
+                    ],
                     onChanged: (value) =>
                         setState(() => selectedGender = value),
                   ),
@@ -185,15 +191,15 @@ class _PermissionViewState extends State<PermissionView> {
             const SizedBox(height: 10),
             // Generation
             MyTextField(
-              hintText: "Generation",
-              labelText: "Generation",
+              hintText: "",
+              labelText: "labRequest.generation".tr,
               controller: _controllers['generation'],
               keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 10),
             // Year Dropdown
             _buildDropdown(
-              label: 'Year',
+              label: 'labRequest.year'.tr,
               value: selectedYear,
               items: const ['1', '2', '3', '4', '5'],
               onChanged: (value) => setState(() => selectedYear = value),
@@ -201,24 +207,24 @@ class _PermissionViewState extends State<PermissionView> {
             const SizedBox(height: 10),
             // Phone number
             MyTextField(
-              hintText: "Your phone number",
-              labelText: "Phone",
+              hintText: "",
+              labelText: "labRequest.phone".tr,
               controller: _controllers['phoneNumber'],
               keyboardType: TextInputType.phone,
             ),
             const SizedBox(height: 10),
             // Major
             MyTextField(
-              hintText: "Information Technology",
-              labelText: "Major",
+              hintText: "",
+              labelText: "labRequest.major".tr,
               controller: _controllers['major'],
               keyboardType: TextInputType.text,
             ),
             const SizedBox(height: 10),
             // Purpose
             MyTextField(
-              hintText: "Your reasons",
-              labelText: "Reason",
+              hintText: "",
+              labelText: "permission.reason".tr,
               controller: _controllers['reason'],
               keyboardType: TextInputType.text,
             ),
@@ -229,7 +235,7 @@ class _PermissionViewState extends State<PermissionView> {
                 Expanded(
                   child: MyTextField(
                     hintText: "",
-                    labelText: "Start Date",
+                    labelText: "labRequest.startDate".tr,
                     controller: _controllers['startDate'],
                     isRead: true,
                     onTap: () =>
@@ -240,7 +246,7 @@ class _PermissionViewState extends State<PermissionView> {
                 Expanded(
                   child: MyTextField(
                     hintText: "",
-                    labelText: "End Date",
+                    labelText: "labRequest.endDate".tr,
                     controller: _controllers['endDate'],
                     isRead: true,
                     onTap: () => _selectDate(context, _controllers['endDate']!),
@@ -254,7 +260,7 @@ class _PermissionViewState extends State<PermissionView> {
               children: [
                 Expanded(
                   child: Button(
-                    buttonText: "Submit",
+                    buttonText: "labRequest.button".tr,
                     backgroundColor: Colors.blue[50],
                     func: _submitForm,
                     textColor: Colors.blue,

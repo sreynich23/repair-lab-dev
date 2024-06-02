@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../data/languages.dart';
 
 class ThemeView extends StatelessWidget {
   const ThemeView({super.key});
@@ -6,11 +9,12 @@ class ThemeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String? selectedTheme;
+    Get.put(Languages());
 
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Theme",
+          "themeView.themeViewTitle".tr,
           style:
               TextStyle(fontWeight: FontWeight.bold, color: Colors.blue[500]),
         ),
@@ -20,8 +24,8 @@ class ThemeView extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: _buildDropdown(
-          items: const ['Light', 'Dark'],
-          label: "Choose Theme",
+          items: ['themeView.themeViewLight'.tr, 'themeView.themeViewDark'.tr],
+          label: "themeView.themeViewDropdown".tr,
           onChanged: (value) {
             selectedTheme = value;
           },

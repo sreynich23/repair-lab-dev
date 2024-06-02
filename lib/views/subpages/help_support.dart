@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../data/languages.dart';
 
 class HelpSupportView extends StatelessWidget {
   const HelpSupportView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.put(Languages());
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Help & Support",
+          'settingView.settingViewHelpSupport'.tr,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.blue[500],
@@ -23,18 +27,18 @@ class HelpSupportView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Need Assistance?",
-              style: TextStyle(
+            Text(
+              "helpSupportView.hsvAssistent".tr,
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
             ),
             const SizedBox(height: 10),
-            const Text(
-              "If you have any questions or need support, please do not hesitate to contact us. Our team is here to help you with any issues or concerns you may have.",
-              style: TextStyle(
+            Text(
+              "helpSupportView.hsvAssistentText".tr,
+              style: const TextStyle(
                 fontSize: 16,
                 color: Colors.black54,
               ),
@@ -59,49 +63,32 @@ class HelpSupportView extends StatelessWidget {
                     throw 'Could not launch $url';
                   }
                 },
-                child: const Row(
+                child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.support_agent),
-                    SizedBox(width: 10),
+                    const Icon(Icons.support_agent),
+                    const SizedBox(width: 10),
                     Text(
-                      "Contact Support",
-                      style: TextStyle(fontSize: 18),
+                      "helpSupportView.hsvButton".tr,
+                      style: const TextStyle(fontSize: 18),
                     ),
                   ],
                 ),
               ),
             ),
             const SizedBox(height: 30),
-            const Text(
-              "Our Services:",
-              style: TextStyle(
+            Text(
+              "helpSupportView.hsvServices".tr,
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
             ),
             const SizedBox(height: 10),
-            const Text(
-              "- Device Repair\n- Software Troubleshooting\n- Maintenance Services\n- and more...",
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.black54,
-              ),
-            ),
-            const SizedBox(height: 30),
-            const Text(
-              "Contact Information:",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
-            const SizedBox(height: 10),
-            const Text(
-              "Phone: (123) 456-7890\nEmail: support@repairinglab.com",
-              style: TextStyle(
+            Text(
+              "helpSupportView.hsvServicesText".tr,
+              style: const TextStyle(
                 fontSize: 16,
                 color: Colors.black54,
               ),

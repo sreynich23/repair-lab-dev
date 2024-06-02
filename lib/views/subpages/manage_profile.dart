@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../components/button.dart';
+import '../../data/languages.dart';
 
 class ManageProfileView extends StatelessWidget {
-  const ManageProfileView({super.key});
+  const ManageProfileView({Key? key});
 
   @override
   Widget build(BuildContext context) {
+    Get.put(Languages());
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Manage Profile",
+          'settingView.settingViewProfile'.tr,
           style:
               TextStyle(fontWeight: FontWeight.bold, color: Colors.blue[500]),
         ),
@@ -26,9 +29,9 @@ class ManageProfileView extends StatelessWidget {
             const SizedBox(height: 5),
             EditProfileButton(onPressed: () {}),
             const SizedBox(height: 10),
-            const ProfileTextField(labelText: 'Name'),
+            ProfileTextField(labelText: 'labRequest.name'.tr),
             const SizedBox(height: 10),
-            const ProfileTextField(labelText: 'Email'),
+            ProfileTextField(labelText: 'loginView.loginEmail'.tr),
             const SizedBox(height: 10),
             const ChangePasswordButton(),
             const SizedBox(
@@ -69,7 +72,7 @@ class EditProfileButton extends StatelessWidget {
         ),
       ),
       onPressed: onPressed,
-      child: const Text("Edit Profile"),
+      child: Text('manageProfileView.mpvEdit'.tr),
     );
   }
 }
@@ -112,56 +115,15 @@ class ChangePasswordButton extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return const ChangePasswordDialog();
-                },
-              );
+              //
             },
-            child: const Padding(
-              padding: EdgeInsets.symmetric(vertical: 15),
-              child: Text("Change Password"),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15),
+              child: Text('manageProfileView.mpvChangePassword'.tr),
             ),
           ),
         ),
       ],
-    );
-  }
-}
-
-class ChangePasswordDialog extends StatelessWidget {
-  const ChangePasswordDialog({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Builder(
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Change Password"),
-          content: const Text("You need to contact labs for change password"),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context); // Close the dialog
-              },
-              child: const Text("Close"),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                const url = 'https://t.me/repairinglab017';
-                if (await canLaunch(url)) {
-                  await launch(url);
-                } else {
-                  throw 'Could not launch $url';
-                }
-                Navigator.pop(context); // Close the dialog
-              },
-              child: const Text("Yes"),
-            ),
-          ],
-        );
-      },
     );
   }
 }
@@ -176,7 +138,7 @@ class SubmitButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Button(
-        buttonText: "Submit",
+        buttonText: 'manageProfileView.mpvButton'.tr,
         func: onPressed,
         backgroundColor: Colors.blue[100],
         textColor: Colors.blue[500],

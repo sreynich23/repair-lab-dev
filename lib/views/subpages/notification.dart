@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../data/languages.dart';
 
 class NotificationView extends StatefulWidget {
   const NotificationView({super.key});
@@ -12,10 +15,11 @@ class _NotificationViewState extends State<NotificationView> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(Languages());
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Notification",
+          "notificationView.nvTitle".tr,
           style:
               TextStyle(fontWeight: FontWeight.bold, color: Colors.blue[500]),
         ),

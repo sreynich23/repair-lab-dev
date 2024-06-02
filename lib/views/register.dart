@@ -37,12 +37,7 @@ class _RegisterViewState extends State<RegisterView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Register",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        title: const Text("Register"),
         actions: [
           IconButton(
             icon: const Icon(CupertinoIcons.question_circle),
