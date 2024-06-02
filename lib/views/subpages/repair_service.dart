@@ -120,20 +120,18 @@ class RepairServiceView extends StatelessWidget {
                 "service.repair".tr,
                 [
                   {
-                    'image': Image.asset("assets/images/computer-repair.png",
+                    'image': Image.asset("assets/icons/computer-repair.png",
                         width: 50),
                     'titleKey': "service.hardware".tr,
                     'contentKey': "service.hardwareTxt".tr
                   },
                   {
-                    'image':
-                        Image.asset("assets/images/testing.png", width: 50),
+                    'image': Image.asset("assets/icons/testing.png", width: 50),
                     'titleKey': "service.software".tr,
                     'contentKey': "service.softwareTxt".tr
                   },
                   {
-                    'image':
-                        Image.asset("assets/images/printer.png", width: 50),
+                    'image': Image.asset("assets/icons/printer.png", width: 50),
                     'titleKey': "service.printer".tr,
                     'contentKey': "service.printerTxt".tr
                   },
@@ -144,7 +142,7 @@ class RepairServiceView extends StatelessWidget {
                 "service.mediaProduction".tr,
                 [
                   {
-                    'image': Image.asset("assets/images/assets.png", width: 50),
+                    'image': Image.asset("assets/icons/assets.png", width: 50),
                     'titleKey': "service.videosCreation".tr,
                     'contentKey': "service.videosCreationTxt".tr
                   },
@@ -156,7 +154,7 @@ class RepairServiceView extends StatelessWidget {
                 "service.programming".tr,
                 [
                   {
-                    'image': Image.asset("assets/images/coding-language.png",
+                    'image': Image.asset("assets/icons/coding-language.png",
                         width: 50),
                     'titleKey': "service.webDev".tr,
                     'contentKey': "service.webDevTxt".tr
@@ -169,7 +167,7 @@ class RepairServiceView extends StatelessWidget {
                 "service.graphicDesign".tr,
                 [
                   {
-                    'image': Image.asset("assets/images/design-thinking.png",
+                    'image': Image.asset("assets/icons/design-thinking.png",
                         width: 50),
                     'titleKey': "service.designing".tr,
                     'contentKey': "service.designingTxt".tr

@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import '../../components/button.dart';
 import '../../data/languages.dart';
-import '../../model/model.dart'; // Import your model class
 
 class LabRequestView extends StatefulWidget {
   const LabRequestView({super.key});
@@ -33,9 +32,6 @@ class _LabRequestViewState extends State<LabRequestView> {
   String? selectedLab;
 
   DateTime selectedDate = DateTime.now();
-
-  final LabRequestController labRequestController =
-      Get.put(LabRequestController());
 
   Future<void> _selectDate(
       BuildContext context, TextEditingController controller) async {
@@ -108,21 +104,7 @@ class _LabRequestViewState extends State<LabRequestView> {
       return;
     }
 
-    // Submit the form if all validations pass
-    final labRequest = LabRequest(
-      fullName: fullName,
-      generation: generation,
-      phoneNumber: phoneNumber,
-      purpose: purpose,
-      gender: selectedGender!,
-      year: selectedYear!,
-      labs: selectedLab!,
-      major: major,
-      startDate: startDate,
-      endDate: endDate,
-    );
 
-    labRequestController.addLabRequest(labRequest);
 
     // Show success message
     ScaffoldMessenger.of(context).showSnackBar(

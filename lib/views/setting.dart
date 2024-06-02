@@ -52,7 +52,7 @@ class SettingView extends StatelessWidget {
               // theme button
               SettingButton(
                 onTap: () {
-                  Get.to(() => const ThemeView());
+                  Get.to(() => ThemeView());
                 },
                 titleText: 'settingView.settingViewTheme'.tr,
               ),

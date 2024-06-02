@@ -48,25 +48,6 @@ class ResultScannerView extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: Button(
-                buttonText: 'resultScannerView.button'.tr,
-                backgroundColor: Colors.blue[100],
-                textColor: Colors.blue[500],
-                func: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const HomePage(),
-                    ),
-                  );
-                },
-              ),
-            )
           ],
         ),
       ),
