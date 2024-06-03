@@ -118,9 +118,9 @@ class SettingView extends StatelessWidget {
     String? name = FirebaseAuth.instance.currentUser!.displayName;
     return Center(
       child: Text(
-        "${name}",
+        "$name",
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
         ),

@@ -1,31 +1,43 @@
-<<<<<<< HEAD
+import 'package:curved_navigation_bar/curved_navigation_bar.dart'
+    show CurvedNavigationBar;
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:firebase_core/firebase_core.dart';
-=======
->>>>>>> upstream/main
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:repairing_lap_app/views/home.dart';
 import 'package:repairing_lap_app/views/login.dart';
 import 'package:repairing_lap_app/views/qrcode.dart';
 import 'package:repairing_lap_app/views/register.dart';
 import 'package:repairing_lap_app/views/setting.dart';
 import 'package:repairing_lap_app/views/welcome.dart';
-// import 'package:repairing_lap_app/data/languages.dart';
 
-import 'data/languages.dart'; 
-
-<<<<<<< HEAD
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  MyData data = MyData();
-  Get.put(data);
-=======
-void main() {
->>>>>>> upstream/main
   runApp(const MainApp());
+}
+
+class checkedLogin extends StatefulWidget {
+  const checkedLogin({Key? key}) : super(key: key);
+
+  @override
+  State<checkedLogin> createState() => _checkedLoginState();
+}
+
+class _checkedLoginState extends State<checkedLogin> {
+  var auth = FirebaseAuth.instance;
+  late User? user;
+
+  @override
+  void initState() {
+    super.initState();
+    user = auth.currentUser;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return user != null ? const HomeView() : const WelcomeView();
+  }
 }
 
 class MainApp extends StatelessWidget {
@@ -33,19 +45,15 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/welcome',
-      translations: Languages(),
-      locale: const Locale('en', 'US'),
-      fallbackLocale: const Locale('en', 'US'),
-      getPages: [
-        GetPage(name: '/register', page: () => const RegisterView()),
-        GetPage(name: '/login', page: () => const LoginView()),
-        GetPage(name: '/home', page: () => const HomePage()),
-        GetPage(name: '/welcome', page: () => const WelcomeView()),
-        // Add other routes here
-      ],
+      initialRoute: '/welcome', // Set the initial route to '/home'
+      routes: {
+        '/register/': (context) => const RegisterView(),
+        '/login/': (context) => const LoginView(),
+        '/home': (context) => const HomePage(), // Use HomePage as the route
+        '/welcome': (context) => const WelcomeView(),
+      },
     );
   }
 }

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../components/button.dart';
 import '../../data/languages.dart';
-import '../../main.dart';
 
 class ResultScannerView extends StatelessWidget {
   final String result;
