@@ -195,6 +195,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
+  // AppBar + Body
   @override
   Widget build(BuildContext context) {
     return Scaffold(

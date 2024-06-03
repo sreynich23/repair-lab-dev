@@ -56,7 +56,7 @@ class _RegisterViewState extends State<RegisterView> {
                 children: [
                   MyTextField(
                     controller: _usernameController,
-                    hintText: 'Chomchan Dara',
+                    hintText: '',
                     labelText: 'Username',
                     keyboardType: TextInputType.text,
                     backgroundColor: Colors.white,
