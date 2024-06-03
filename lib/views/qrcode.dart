@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import '../components/notificatino_bell.dart';
@@ -42,12 +42,7 @@ class _ScanQRCodeViewState extends State<ScanQRCodeView> {
 
   void _onQRViewCreated(BarcodeCapture capture) {
     final String code = capture.barcodes.first.rawValue ?? 'Unknown';
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ResultScannerView(result: code),
-      ),
-    );
+    Get.to(() => ResultScannerView(result: code));
   }
 
   @override
@@ -80,7 +75,7 @@ class _ScanQRCodeViewState extends State<ScanQRCodeView> {
                       ),
                     ),
                     Text(
-                      'Profile',
+                      'homeView.profile'.tr,
                       style: TextStyle(
                         fontSize: 12.0,
                         color: Colors.grey[500],
@@ -108,7 +103,7 @@ class _ScanQRCodeViewState extends State<ScanQRCodeView> {
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Align frame with QR Code"),
+                  Text('scanQRCodeView.scanTitle'.tr),
                   const SizedBox(
                     height: 15,
                   ),
@@ -160,7 +155,7 @@ class _ScanQRCodeViewState extends State<ScanQRCodeView> {
                           const SizedBox(
                             height: 10,
                           ),
-                          const Text("Flashlight")
+                          Text("scanQRCodeView.scanFlashlight".tr)
                         ],
                       ),
                     ],

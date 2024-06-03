@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LanguageView extends StatelessWidget {
   const LanguageView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    String? selectedLan;
+    var selectedLan = 'en_US'.obs;
 
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Language",
+          'settingView.settingViewLan'.tr,
           style:
               TextStyle(fontWeight: FontWeight.bold, color: Colors.blue[500]),
         ),
@@ -19,14 +20,25 @@ class LanguageView extends StatelessWidget {
       backgroundColor: Colors.grey[100],
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child: _buildDropdown(
-          items: const ['Khmer', 'English'],
-          label: "Choose Language",
-          onChanged: (value) {
-            selectedLan = value;
-          },
-          value: selectedLan,
-        ),
+        child: Obx(() => _buildDropdown(
+              items: [
+                'languageView.languageViewEn'.tr,
+                'languageView.languageViewKh'.tr
+              ],
+              label: 'languageView.languageViewDropdown'.tr,
+              onChanged: (value) {
+                if (value == 'languageView.languageViewEn'.tr) {
+                  selectedLan.value = 'en_US';
+                  Get.updateLocale(const Locale('en', 'US'));
+                } else if (value == 'languageView.languageViewKh'.tr) {
+                  selectedLan.value = 'kh_KH';
+                  Get.updateLocale(const Locale('kh', 'KH'));
+                }
+              },
+              value: selectedLan.value == 'en_US'
+                  ? 'languageView.languageViewEn'.tr
+                  : 'languageView.languageViewKh'.tr,
+            )),
       ),
     );
   }

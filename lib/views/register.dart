@@ -38,12 +38,7 @@ class _RegisterViewState extends State<RegisterView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Register",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        title: const Text("Register"),
         actions: [
           IconButton(
             icon: const Icon(CupertinoIcons.question_circle),
@@ -61,7 +56,7 @@ class _RegisterViewState extends State<RegisterView> {
                 children: [
                   MyTextField(
                     controller: _usernameController,
-                    hintText: 'Chomchan Dara',
+                    hintText: '',
                     labelText: 'Username',
                     keyboardType: TextInputType.text,
                     backgroundColor: Colors.white,

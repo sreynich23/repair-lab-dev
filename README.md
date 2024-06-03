@@ -29,14 +29,5 @@ Welcome to the Repairing Lap App! This Flutter project provides a platform for u
 3. Install dependencies: `flutter pub get`
 4. Run the app: `flutter run`
 
-## Contributing
-Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/your-feature-name`).
-3. Make your changes.
-4. Commit your changes (`git commit -am 'Add some feature'`).
-5. Push to the branch (`git push origin feature/repair-lab-dev`).
-6. Create a new Pull Request.
-
-## Contact
-For any inquiries or support, please contact us at borinmorm5@gmail.com.
+## Status
+Working on UI 
